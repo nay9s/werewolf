@@ -34,6 +34,12 @@ echo "DOMAIN=werewolf.example.com" > .env
 docker compose --profile https up -d --build     # https://werewolf.example.com
 ```
 
+ถ้า VPS มีไฟร์วอลล์ Docker ที่ดักขาเข้า (เช่น chain `NINESYNC-INGRESS` ที่อนุญาตเฉพาะบางพอร์ต) ให้เปิดพอร์ตเกมแบบถาวรด้วย:
+
+```bash
+sudo bash deploy/install-firewall-rule.sh 8080
+```
+
 อัปเดตเวอร์ชัน: `git pull && docker compose up -d --build`
 
 ## Deploy: หน้าเว็บบน Vercel + server บน Render
