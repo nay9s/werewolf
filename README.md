@@ -20,6 +20,18 @@ docker compose up -d --build
 
 หยุด: `docker compose down` · ล้างข้อมูล: `docker compose down -v`
 
+## Deploy: หน้าเว็บบน Vercel + server บน Render
+
+Vercel ไม่รองรับ WebSocket server ที่รันค้าง จึงแยกเป็น 2 ส่วน
+
+1. **Server (Render ฟรี):** render.com → New → Blueprint → เลือก repo นี้ (ใช้ `render.yaml`) ได้ URL เช่น `https://werewolf-server.onrender.com`
+2. **หน้าเว็บ (Vercel):** vercel.com → Add New Project → เลือก repo นี้
+   - **Root Directory:** `client`
+   - **Environment Variable:** `VITE_SERVER_URL` = URL ของ server จากข้อ 1
+   - กด Deploy
+
+หมายเหตุ: Render แผนฟรีจะหลับเมื่อไม่มีคนใช้ เปิดครั้งแรกรอ ~30 วิ และไม่มี Redis (ห้องหายเมื่อ server รีสตาร์ท)
+
 ## โหมดพัฒนา (ไม่ใช้ Docker)
 
 ```bash

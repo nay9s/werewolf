@@ -1,0 +1,9 @@
+# Deploy game server (WebSocket) on Render: New > Blueprint > เลือก repo นี้
+services:
+  - type: web
+    name: werewolf-server
+    runtime: docker
+    rootDir: server
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health

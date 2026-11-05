@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client';
 
-export const socket = io({ transports: ['websocket', 'polling'] });
+// Docker/dev: ใช้โดเมนเดียวกัน · Vercel: ตั้ง VITE_SERVER_URL เป็น URL ของ game server
+const SERVER_URL: string | undefined = import.meta.env.VITE_SERVER_URL || undefined;
+export const socket = io(SERVER_URL as string, { transports: ['websocket', 'polling'] });
 
 export type Reply = { ok: boolean; error?: string; code?: string; pid?: string };
 
