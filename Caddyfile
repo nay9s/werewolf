@@ -1,0 +1,4 @@
+# HTTPS อัตโนมัติ (Let's Encrypt) — ใช้เมื่อมีโดเมนชี้มาที่ VPS
+{$DOMAIN} {
+  reverse_proxy client:80
+}

@@ -23,5 +23,22 @@ services:
       - server
     restart: unless-stopped
 
+  # เปิดใช้ด้วย: docker compose --profile https up -d  (ตั้ง DOMAIN ใน .env)
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["https"]
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on:
+      - client
+    restart: unless-stopped
+
 volumes:
   redis-data:
+  caddy-data:

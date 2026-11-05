@@ -20,6 +20,22 @@ docker compose up -d --build
 
 หยุด: `docker compose down` · ล้างข้อมูล: `docker compose down -v`
 
+## Deploy บน VPS (แนะนำ)
+
+```bash
+git clone https://github.com/nay9s/werewolf && cd werewolf
+docker compose up -d --build                    # http://<IP>:8080
+```
+
+มีโดเมน? ชี้ A record มาที่ IP ของ VPS แล้วรัน (เปิดพอร์ต 80/443):
+
+```bash
+echo "DOMAIN=werewolf.example.com" > .env
+docker compose --profile https up -d --build     # https://werewolf.example.com
+```
+
+อัปเดตเวอร์ชัน: `git pull && docker compose up -d --build`
+
 ## Deploy: หน้าเว็บบน Vercel + server บน Render
 
 Vercel ไม่รองรับ WebSocket server ที่รันค้าง จึงแยกเป็น 2 ส่วน
